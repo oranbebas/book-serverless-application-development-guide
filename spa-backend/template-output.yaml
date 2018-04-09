@@ -1,104 +1,223 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: An AWS Serverless Specification template describing your function.
 Resources:
+  Api:
+    Properties:
+      DefinitionBody:
+        info:
+          title: serverless-app-20180327
+          version: '1.0'
+        paths:
+          /images:
+            get:
+              responses: {}
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                passthroughBehavior: when_no_match
+                type: aws_proxy
+                uri:
+                  Fn::Sub: arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/${getImages.Arn}/invocations
+            options:
+              consumes:
+              - application/json
+              produces:
+              - application/json
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
+              x-amazon-apigateway-integration:
+                requestTemplates:
+                  application/json: "{\n  \"statusCode\" : 200\n}\n"
+                responses:
+                  default:
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''GET,
+                        POST, PUT, DELETE'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}
+
+                        '
+                    statusCode: '200'
+                type: mock
+            post:
+              responses: {}
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                passthroughBehavior: when_no_match
+                type: aws_proxy
+                uri:
+                  Fn::Sub: arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/${postImages.Arn}/invocations
+            put:
+              responses: {}
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                passthroughBehavior: when_no_match
+                type: aws_proxy
+                uri:
+                  Fn::Sub: arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/${updateImage.Arn}/invocations
+          /images/{id}:
+            delete:
+              responses: {}
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                passthroughBehavior: when_no_match
+                type: aws_proxy
+                uri:
+                  Fn::Sub: arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/${deleteImageById.Arn}/invocations
+            get:
+              responses: {}
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                passthroughBehavior: when_no_match
+                type: aws_proxy
+                uri:
+                  Fn::Sub: arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/${getImageById.Arn}/invocations
+            options:
+              consumes:
+              - application/json
+              produces:
+              - application/json
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
+              x-amazon-apigateway-integration:
+                requestTemplates:
+                  application/json: "{\n  \"statusCode\" : 200\n}\n"
+                responses:
+                  default:
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''GET,
+                        POST, PUT, DELETE'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}
+
+                        '
+                    statusCode: '200'
+                type: mock
+        schemes:
+        - https
+        swagger: '2.0'
+      StageName: Prod
+    Type: AWS::Serverless::Api
   deleteImageById:
     Properties:
-      CodeUri: s3://serverless-app-sam-20180327/e2c25df6ac9f15a453b128224346596f
+      CodeUri: s3://serverless-app-sam-20180327/c7f8df850ba7adb4eca27db3cf9e4a0b
       Description: ''
       Environment:
         Variables:
-          BUCKET_NAME: serveless-app-photos-20180327
+          BUCKET_NAME: serverless-app-photos-20180327
           TABLE_NAME: photos
-      Events:
-        Api:
-          Properties:
-            Method: delete
-            Path: /images/{id}
-          Type: Api
       Handler: delete-image-by-id.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::589310877371:role/lambda-dynamodb-access
       Runtime: python3.6
       Timeout: 15
     Type: AWS::Serverless::Function
+  deleteImageByIdPermission:
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: deleteImageById
+      Principal: apigateway.amazonaws.com
+    Type: AWS::Lambda::Permission
   getImageById:
     Properties:
-      CodeUri: s3://serverless-app-sam-20180327/d53e7db1c841deed13e9e45d89b83a79
+      CodeUri: s3://serverless-app-sam-20180327/0ffbeb71a4a11b94077901314dfb7372
       Description: ''
       Environment:
         Variables:
-          BUCKET_NAME: serveless-app-photos-20180327
+          BUCKET_NAME: serverless-app-photos-20180327
           TABLE_NAME: photos
-      Events:
-        Api:
-          Properties:
-            Method: get
-            Path: /images/{id}
-          Type: Api
       Handler: get-image-by-id.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::589310877371:role/lambda-dynamodb-access
       Runtime: python3.6
       Timeout: 15
     Type: AWS::Serverless::Function
+  getImageByIdPermission:
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: getImageById
+      Principal: apigateway.amazonaws.com
+    Type: AWS::Lambda::Permission
   getImages:
     Properties:
-      CodeUri: s3://serverless-app-sam-20180327/528e70af1ddbea2b9237d9b9ead28d83
+      CodeUri: s3://serverless-app-sam-20180327/4b7b44d1ed6b72601926121bd08b73c5
       Description: ''
       Environment:
         Variables:
-          BUCKET_NAME: serveless-app-photos-20180327
+          BUCKET_NAME: serverless-app-photos-20180327
           TABLE_NAME: photos
-      Events:
-        Api:
-          Properties:
-            Method: get
-            Path: /images
-          Type: Api
       Handler: get-images.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::589310877371:role/lambda-dynamodb-access
       Runtime: python3.6
       Timeout: 15
     Type: AWS::Serverless::Function
+  getImagesPermission:
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: getImages
+      Principal: apigateway.amazonaws.com
+    Type: AWS::Lambda::Permission
   postImages:
     Properties:
       CodeUri: s3://serverless-app-sam-20180327/66c3d78365028d32df5a3a517e965636
       Description: ''
       Environment:
         Variables:
-          BUCKET_NAME: serveless-app-photos-20180327
+          BUCKET_NAME: serverless-app-photos-20180327
           TABLE_NAME: photos
-      Events:
-        Api:
-          Properties:
-            Method: post
-            Path: /images
-          Type: Api
       Handler: post-images.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::589310877371:role/lambda-dynamodb-access
       Runtime: python3.6
       Timeout: 15
     Type: AWS::Serverless::Function
-  updateImages:
+  postImagesPermission:
     Properties:
-      CodeUri: s3://serverless-app-sam-20180327/a4989aded63e7e3049fd579b93e03dca
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: postImages
+      Principal: apigateway.amazonaws.com
+    Type: AWS::Lambda::Permission
+  updateImage:
+    Properties:
+      CodeUri: s3://serverless-app-sam-20180327/ec851e352f7535bb5c5eaa4a609552b7
       Description: ''
       Environment:
         Variables:
-          BUCKET_NAME: serveless-app-photos-20180327
+          BUCKET_NAME: serverless-app-photos-20180327
           TABLE_NAME: photos
-      Events:
-        Api:
-          Properties:
-            Method: put
-            Path: /images
-          Type: Api
       Handler: update-image.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::589310877371:role/lambda-dynamodb-access
       Runtime: python3.6
       Timeout: 15
     Type: AWS::Serverless::Function
+  updateImagePermission:
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: updateImage
+      Principal: apigateway.amazonaws.com
+    Type: AWS::Lambda::Permission
 Transform: AWS::Serverless-2016-10-31

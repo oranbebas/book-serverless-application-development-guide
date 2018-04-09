@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import datetime
+import decimal
 from botocore.exceptions import ClientError
 from boto3.dynamodb.conditions import Key, Attr
 
