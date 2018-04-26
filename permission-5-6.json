@@ -1,0 +1,27 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "dynamodb:UpdateItem"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:ap-northeast-1:589310877371:table/photos",
+        "arn:aws:s3:::serverless-app-photos-20180327/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "rekognition:DetectLabels",
+        "logs:CreateLogStream",
+        "rekognition:DetectFaces",
+        "logs:CreateLogGroup",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

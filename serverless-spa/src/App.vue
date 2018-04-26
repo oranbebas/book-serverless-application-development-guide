@@ -7,7 +7,10 @@
           <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
           <li class="pure-menu-item"><a href="#upload-image" class="pure-menu-link">Upload</a></li>
           <li class="pure-menu-item"><a href="#" class="puremenu-link">Settings</a></li>
-          <li class="pure-menu-item"><a href="#" class="puremenu-link">Login</a></li>
+          <li class="pure-menu-item">
+            <router-link v-if="isLoggedIn" to="/logout" class="puremenu-link">Logout</router-link>
+            <router-link v-if="!isLoggedIn" to="/login" class="puremenu-link">Login</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -19,9 +22,19 @@
 </template>
 
 <script>
+import auth from "./auth";
 export default {
-  name: 'App'
-}
+  data() {
+    return {
+      isLoggedIn: auth.loggedIn()
+    };
+  },
+  created: function() {
+    auth.onChange = isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    };
+  }
+};
 </script>
 
 <style>

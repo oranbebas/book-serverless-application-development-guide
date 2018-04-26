@@ -1,0 +1,67 @@
+{
+    "StackEvents": [
+        {
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "EventId": "84b6aa30-478b-11e8-974c-500c44f24c1e",
+            "StackName": "serverless-app-20180327",
+            "LogicalResourceId": "serverless-app-20180327",
+            "PhysicalResourceId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "ResourceType": "AWS::CloudFormation::Stack",
+            "Timestamp": "2018-04-24T06:48:38.720Z",
+            "ResourceStatus": "UPDATE_ROLLBACK_COMPLETE"
+        },
+        {
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "EventId": "842873f0-478b-11e8-b87b-500c28b9749a",
+            "StackName": "serverless-app-20180327",
+            "LogicalResourceId": "serverless-app-20180327",
+            "PhysicalResourceId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "ResourceType": "AWS::CloudFormation::Stack",
+            "Timestamp": "2018-04-24T06:48:37.769Z",
+            "ResourceStatus": "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS"
+        },
+        {
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "EventId": "Api-UPDATE_COMPLETE-2018-04-24T06:48:35.065Z",
+            "StackName": "serverless-app-20180327",
+            "LogicalResourceId": "Api",
+            "PhysicalResourceId": "mzapr2gzyh",
+            "ResourceType": "AWS::ApiGateway::RestApi",
+            "Timestamp": "2018-04-24T06:48:35.065Z",
+            "ResourceStatus": "UPDATE_COMPLETE",
+            "ResourceProperties": "{\"Body\":{\"paths\":{\"/images/{id}\":{\"get\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-getImageById-H6P7O35M1W03/invocations\"}},\"options\":{\"produces\":[\"application/json\"],\"responses\":{\"200\":{\"headers\":{\"Access-Control-Allow-Origin\":{\"type\":\"string\"},\"Access-Control-Allow-Methods\":{\"type\":\"string\"},\"Access-Control-Allow-Headers\":{\"type\":\"string\"}}}},\"x-amazon-apigateway-integration\":{\"requestTemplates\":{\"application/json\":\"{\\n  \\\"statusCode\\\" : 200\\n}\\n\"},\"responses\":{\"default\":{\"responseParameters\":{\"method.response.header.Access-Control-Allow-Methods\":\"'GET, POST, PUT, DELETE'\",\"method.response.header.Access-Control-Allow-Headers\":\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key'\",\"method.response.header.Access-Control-Allow-Origin\":\"'*'\"},\"responseTemplates\":{\"application/json\":\"{}\\n\"},\"statusCode\":\"200\"}},\"type\":\"mock\"},\"consumes\":[\"application/json\"]},\"delete\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-deleteImageById-TPNMMEFAOLHH/invocations\"}}},\"/images\":{\"post\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-postImages-1SI1836T90358/invocations\"}},\"get\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-getImages-PL9MVKCQY0JJ/invocations\"}},\"options\":{\"produces\":[\"application/json\"],\"responses\":{\"200\":{\"headers\":{\"Access-Control-Allow-Origin\":{\"type\":\"string\"},\"Access-Control-Allow-Methods\":{\"type\":\"string\"},\"Access-Control-Allow-Headers\":{\"type\":\"string\"}}}},\"x-amazon-apigateway-integration\":{\"requestTemplates\":{\"application/json\":\"{\\n  \\\"statusCode\\\" : 200\\n}\\n\"},\"responses\":{\"default\":{\"responseParameters\":{\"method.response.header.Access-Control-Allow-Methods\":\"'GET, POST, PUT, DELETE'\",\"method.response.header.Access-Control-Allow-Headers\":\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key'\",\"method.response.header.Access-Control-Allow-Origin\":\"'*'\"},\"responseTemplates\":{\"application/json\":\"{}\\n\"},\"statusCode\":\"200\"}},\"type\":\"mock\"},\"consumes\":[\"application/json\"]},\"put\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-updateImage-1BSBZ8X1C1C1G/invocations\"}}}},\"schemes\":[\"https\"],\"swagger\":\"2.0\",\"info\":{\"title\":\"serverless-app-20180327\",\"version\":\"1.0\"}}}"
+        },
+        {
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "EventId": "7df62630-478b-11e8-a67b-50a6866998c6",
+            "StackName": "serverless-app-20180327",
+            "LogicalResourceId": "serverless-app-20180327",
+            "PhysicalResourceId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "ResourceType": "AWS::CloudFormation::Stack",
+            "Timestamp": "2018-04-24T06:48:27.380Z",
+            "ResourceStatus": "UPDATE_ROLLBACK_IN_PROGRESS",
+            "ResourceStatusReason": "The following resource(s) failed to update: [Api]. "
+        },
+        {
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "EventId": "Api-UPDATE_FAILED-2018-04-24T06:48:26.103Z",
+            "StackName": "serverless-app-20180327",
+            "LogicalResourceId": "Api",
+            "PhysicalResourceId": "mzapr2gzyh",
+            "ResourceType": "AWS::ApiGateway::RestApi",
+            "Timestamp": "2018-04-24T06:48:26.103Z",
+            "ResourceStatus": "UPDATE_FAILED",
+            "ResourceStatusReason": "Template error: Function serverless-app-20180327-getImageById-H6P7O35M1W03 doesn't exist",
+            "ResourceProperties": "{\"Body\":{\"paths\":{\"/images/{id}\":{\"get\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-getImageById-H6P7O35M1W03/invocations\"}},\"options\":{\"produces\":[\"application/json\"],\"responses\":{\"200\":{\"headers\":{\"Access-Control-Allow-Origin\":{\"type\":\"string\"},\"Access-Control-Allow-Methods\":{\"type\":\"string\"},\"Access-Control-Allow-Headers\":{\"type\":\"string\"}}}},\"x-amazon-apigateway-integration\":{\"requestTemplates\":{\"application/json\":\"{\\n  \\\"statusCode\\\" : 200\\n}\\n\"},\"responses\":{\"default\":{\"responseParameters\":{\"method.response.header.Access-Control-Allow-Methods\":\"'GET, POST, PUT, DELETE'\",\"method.response.header.Access-Control-Allow-Headers\":\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key'\",\"method.response.header.Access-Control-Allow-Origin\":\"'*'\"},\"responseTemplates\":{\"application/json\":\"{}\\n\"},\"statusCode\":\"200\"}},\"type\":\"mock\"},\"consumes\":[\"application/json\"]},\"delete\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-deleteImageById-TPNMMEFAOLHH/invocations\"}}},\"/images\":{\"post\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-postImages-1SI1836T90358/invocations\"}},\"get\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-getImages-PL9MVKCQY0JJ/invocations\"}},\"options\":{\"produces\":[\"application/json\"],\"responses\":{\"200\":{\"headers\":{\"Access-Control-Allow-Origin\":{\"type\":\"string\"},\"Access-Control-Allow-Methods\":{\"type\":\"string\"},\"Access-Control-Allow-Headers\":{\"type\":\"string\"}}}},\"x-amazon-apigateway-integration\":{\"requestTemplates\":{\"application/json\":\"{\\n  \\\"statusCode\\\" : 200\\n}\\n\"},\"responses\":{\"default\":{\"responseParameters\":{\"method.response.header.Access-Control-Allow-Methods\":\"'GET, POST, PUT, DELETE'\",\"method.response.header.Access-Control-Allow-Headers\":\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key'\",\"method.response.header.Access-Control-Allow-Origin\":\"'*'\"},\"responseTemplates\":{\"application/json\":\"{}\\n\"},\"statusCode\":\"200\"}},\"type\":\"mock\"},\"consumes\":[\"application/json\"]},\"put\":{\"responses\":{},\"x-amazon-apigateway-integration\":{\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\",\"uri\":\"arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:589310877371:function:serverless-app-20180327-updateImage-1BSBZ8X1C1C1G/invocations\"}}}},\"schemes\":[\"https\"],\"swagger\":\"2.0\",\"info\":{\"title\":\"serverless-app-20180327\",\"version\":\"1.0\"}}}"
+        },
+        {
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "EventId": "7b2b6d70-478b-11e8-974c-500c44f24c1e",
+            "StackName": "serverless-app-20180327",
+            "LogicalResourceId": "serverless-app-20180327",
+            "PhysicalResourceId": "arn:aws:cloudformation:ap-northeast-1:589310877371:stack/serverless-app-20180327/5daff8a0-389b-11e8-8bcf-50fa13f4ec75",
+            "ResourceType": "AWS::CloudFormation::Stack",
+            "Timestamp": "2018-04-24T06:48:22.718Z",
+            "ResourceStatus": "UPDATE_IN_PROGRESS",
+            "ResourceStatusReason": "User Initiated"
+        },

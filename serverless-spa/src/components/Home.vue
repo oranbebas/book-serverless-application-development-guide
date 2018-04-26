@@ -7,7 +7,9 @@
           </div>
       </div>
       <div v-for="image in images" :key="image.photo_id" class="photo pure-u-1-3 pure-u-md-1-3 pure-u-lg-1-3 pure-u-xl-1-3">
-          <img v-bind:src="image_url_base + '/' +image.photo_id + '.' + image.type.split('/')[1]">
+        <router-link v-bind:to="{ name : 'photo', params : { photo_id : image.photo_id }}">
+          <img v-bind:src="image_url_base + '/' + image.photo_id + '.' + image.type.split('/')[1]">
+        </router-link>
       </div>
       <div class="pure-u-1 form-box" id="upload-image">
           <div class="l-box">
@@ -22,6 +24,7 @@
 <script>
 import axios from "axios";
 import appConfig from "../config";
+import auth from "../auth";
 
 const API_BASE_URL = appConfig.ApiBaseUrl;
 const IMAGE_BASE_URL = appConfig.ImageBaseUrl;
@@ -44,9 +47,11 @@ export default {
     //画像情報の一覧取得APIにアクセスして結果をセットする
     listImages: function() {
       var self = this;
-      var _this = this;
-
-      axios.get(API_BASE_URL + "/images/").then(function(res) {
+      var auth_header = auth.get_id_token()
+      console.log(auth_header)
+      axios.get(API_BASE_URL + "/images/",
+                { headers: { 'Authorization' : auth_header } }
+      ).then(function(res) {
         self.$data.images = res.data;
       });
     },
@@ -59,13 +64,15 @@ export default {
     uploadImage: function() {
       var file = this.uploadFile;
       var json = null;
+      var auth_header = auth.get_id_token();
 
       //画像アップロード用APIを呼び出してアップロードする画像のキーやアップロード用署名付きURLを取得
       var data = { size: file.size, type: file.type };
 
       axios
-        .post(API_BASE_URL + "/images/", JSON.stringify(data))
-        .then(function(res) {
+        .post(API_BASE_URL + "/images/", JSON.stringify(data),
+              { headers: { Authorization: auth_header } }
+        ).then(function(res) {
           json = JSON.parse(JSON.stringify(res.data));
 
           //取得した署名付きURLを用いてファイルをAmazon S3にアップロード
@@ -79,13 +86,14 @@ export default {
             .then(function(res) {
               json["status"] = "Uploaded";
               var self = this;
-              axios.put(API_BASE_URL + "/images/", json).then(function(res) {
+              axios.put(API_BASE_URL + "/images/", json,
+                        { headers: { Authorization: auth_header } }
+              ).then(function(res) {
                 alert("Successfully uploaded photo.");
                 _this.$router.go(_this.$router.currentRoute);
               });
             })
             .catch(function(error) {
-              alert("1")
               alert(error);
               console.log(error);
             });

@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: An AWS Serverless Specification template describing your function.
+Outputs:
+  FunctionARN:
+    Value:
+      Ref: rekognizeImages
+Resources:
+  rekognizeImages:
+    Properties:
+      CodeUri: s3://serverless-app-sam-recognition-20180327/4bc056f54480c26c79f80d91dcba0b34
+      Description: ''
+      Environment:
+        Variables:
+          BUCKET_NAME: serverless-app-photos-20180327
+          TABLE_NAME: photos
+      Handler: recognition.lambda_handler
+      MemorySize: 128
+      Role: arn:aws:iam::589310877371:role/lambda-imagerekognition-role
+      Runtime: python3.6
+      Timeout: 300
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
